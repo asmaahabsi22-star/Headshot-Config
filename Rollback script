@@ -1,0 +1,21 @@
+// Delete NTP unicast server configuration
+// Server IP: 10.10.10.10, IPv4, NTP version 3
+// Key ID: 2, Not preferred, Poll intervals: min 3, max 10
+// Preempt, Burst, iBurst: Disabled, Port: 123
+DEL NTPUCASTCFG:TYPE=Server,ADDRFAMILY=IPv4,IPV4ADDR="10.10.10.10",VERSION=3,KEYID=2,ISPREFERRED=FALSE,MAXPOLLINTERVAL=10,MINPOLLINTERVAL=3,ISPREEMPT=FALSE,ISBURST=FALSE,ISIBURST=FALSE,PORTNUMBER=123;
+
+// Delete NTP authentication key with ID 2
+DEL NTPAUTHKEYCFG:KEYID=2;
+
+// Set system-wide NTP configuration
+// Authentication: Disabled, Max sessions: 100
+// KoD packets: Disabled, Sync interval: 1024 seconds
+// Discard intervals: min 5, avg 10, Local port: 123
+// Offset limit: 1000 milliseconds
+SET NTPSYSTEMCFG:ISAUTHENABLE=FALSE,MAXSESSCOUNT=100,ISKODENABLE=FALSE,SYNCINTERVAL=1024,MINDISCARDINTVL=5,AVGDISCARDINTVL=10,LOCALPORT=123,OFFSETLIMIT=1000;
+
+// Disable Daylight Saving Time
+SET DST:ISDSTENABLED=FALSE;
+
+// Delete time zone configuration for "Oman"
+SET TZ:TIMEZONENAME="Oman",OPTION=del;
